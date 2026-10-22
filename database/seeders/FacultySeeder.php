@@ -23,8 +23,8 @@ class FacultySeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Business Administration',
-                'description' => 'คณะบริหารธุรกิจ',
+                'name' => 'Medicine',
+                'description' => 'คณะแพทยศาสตร์',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
