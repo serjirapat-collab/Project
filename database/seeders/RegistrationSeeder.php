@@ -2,22 +2,24 @@
 
 namespace Database\Seeders;
 
+use App\Models\Event;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class RegistrationSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('registrations')->insert([
-            [
-                'event_id' => 1,
-                'user_id' => 1,
-                'registered_at' => now(),
-                'status' => 'registered',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        // Each demo student starts with two events of their own faculty.
+        $registrations = [
+            'student@camt.com' => ['EV001', 'EV004'],
+            'student@eng.com' => ['EV010', 'EV013'],
+            'student@med.com' => ['EV019', 'EV022'],
+        ];
+
+        foreach ($registrations as $email => $eventCodes) {
+            $student = User::where('email', $email)->firstOrFail();
+            $student->events()->attach(Event::whereIn('code', $eventCodes)->get());
+        }
     }
 }

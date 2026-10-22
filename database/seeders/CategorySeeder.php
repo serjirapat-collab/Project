@@ -2,44 +2,28 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class CategorySeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('categories')->insert([
-            [
-                'name' => 'Academic',
-                'description' => 'กิจกรรมด้านวิชาการ',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Volunteer',
-                'description' => 'กิจกรรมจิตอาสา',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Sports',
-                'description' => 'กิจกรรมกีฬา',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Entertainment',
-                'description' => 'กิจกรรมสันทนาการ',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Workshop',
-                'description' => 'กิจกรรมอบรมเชิงปฏิบัติการ',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        $categories = [
+            ['CT01', 'ร้องเพลง', 'ประกวดร้องเพลงและคาราโอเกะ'],
+            ['CT02', 'ตลาด', 'ตลาดนัดและการออกร้าน'],
+            ['CT03', 'สัตว์เลี้ยง', 'กิจกรรมเกี่ยวกับสัตว์เลี้ยง'],
+            ['CT04', 'คอนเสิร์ต', 'การแสดงดนตรีและคอนเสิร์ต'],
+            ['CT05', 'แข่งเกม', 'การแข่งขันเกมและอีสปอร์ต'],
+            ['CT06', 'นันทนาการ', 'กิจกรรมสันทนาการและสานสัมพันธ์'],
+        ];
+
+        foreach ($categories as [$code, $name, $description]) {
+            Category::create([
+                'code' => $code,
+                'name' => $name,
+                'description' => $description,
+            ]);
+        }
     }
 }
